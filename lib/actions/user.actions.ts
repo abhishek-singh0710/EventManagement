@@ -12,7 +12,8 @@ import { CreateUserParams, UpdateUserParams } from '@/types'
 
 export async function createUser(user: CreateUserParams) {
   try {
-    await connectToDatabase()
+    await connectToDatabase()    // This will have to be done in every function since when deployed on Vercel It will be functioning as a Serverless function which means that
+    // these functions will not always be running or up when something is done in the browser when they are called then the servers will run
 
     const newUser = await User.create(user)
     return JSON.parse(JSON.stringify(newUser))
